@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Типичные ошибки (антипаттерны)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .grid {
+            display: block;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .card {
+            margin-bottom: 2mm;
+            background-color: #fff;
+            border: 0.75pt solid #42A1A5;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            align-items: flex-start;
+        }
+        .error-title {
+            background-color: #fff;
+            padding: 3px 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            text-align: left;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .buttons button {
+            background-color: #42A1A5;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            width: 6cm;
+            height: 1.5cm;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .buttons button:disabled {
+            background-color: #b7b7b7;
+            cursor: not-allowed;
+        }
+        .content {
+            margin-top: 20px;
+            text-align: left;
+            display: none;
+            width: 100%;
+        }
+        strong {
+            font-weight: 600;
+        }
+        #sign-0, #fix-0, #sign-1, #fix-1, #sign-2, #fix-2, #sign-3, #fix-3, #sign-4, #fix-4 {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div class="card">
+            <div class="buttons">
+                <div class="error-title">1. Нам некогда</div>
+                <button id="fix-0-btn" onclick="toggleContent(this, 'fix-0', 'sign-0')">Как чинить</button>
+            </div>
+            <div id="fix-0" class="content" style="background-color: #F1F8FF;"><strong>Как чинить:</strong> начни с 15 минут раз в две недели и настрой формат по обратной связи.</div>
+        </div>
+        <div class="card">
+            <div class="buttons">
+                <div class="error-title">2. Ты пропускаешь</div>
+                <button id="fix-1-btn" onclick="toggleContent(this, 'fix-1', 'sign-1')">Как чинить</button>
+            </div>
+            <div id="fix-1" class="content" style="background-color: #F1F8FF;"><strong>Как чинить:</strong> назначь ведущего. Каденция не должна держаться на одном календаре.</div>
+        </div>
+        <div class="card">
+            <div class="buttons">
+                <div class="error-title">3. Пропустили месяц</div>
+                <button id="fix-2-btn" onclick="toggleContent(this, 'fix-2', 'sign-2')">Как чинить</button>
+            </div>
+            <div id="fix-2" class="content" style="background-color: #F1F8FF;"><strong>Как чинить:</strong> не наверстывайте. Один вопрос: «Что изменилось, пока мы не смотрели?»<br>— фиксируете и возвращаетесь в ритм.</div>
+        </div>
+    </div>
+
+    <script>
+        function toggleContent(button, showId, moveId) {
+            const contentToShow = document.getElementById(showId);
+            contentToShow.style.display = 'block';
+            button.style.display = 'none';
+            const moveButton = document.getElementById(moveId + '-btn');
+            if (moveButton) {
+                moveButton.disabled = false; // Enable the 'Как чинить' button when 'Признак' is shown
+            }
+        }
+    </script>
+</body>
+</html>
